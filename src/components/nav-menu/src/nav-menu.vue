@@ -6,6 +6,7 @@
             text-color="#b7bdc3"
             :collapse="props.collapse"
             active-text-color="#0a60bd"
+            :default-active="defaultId"
         >
             <div class="logo">
                 <img src="~@/assets/img/logo.svg" alt="logo" class="img" />
@@ -60,8 +61,9 @@
 </template>
 <script lang="ts" setup>
 import { useStore } from '@/store'
-import { computed, defineProps } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed, defineProps, ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { getCurrentPath } from '@/utils/map-menu'
 const store = useStore()
 const props = defineProps({
     collapse: {
@@ -70,6 +72,7 @@ const props = defineProps({
     }
 })
 const router = useRouter()
+const route = useRoute()
 const menus = computed(() => store.state.login.userMenus)
 const filterFn = computed(() => {
     return function (val: string) {
@@ -77,6 +80,9 @@ const filterFn = computed(() => {
         return val.slice(str.length)
     }
 })
+const currentPath = route.path
+const defaultId = ref(getCurrentPath(menus.value, currentPath) + '')
+
 const handelMenu = (menu: any) => {
     router.push({
         path: menu.url ?? '/not-found'
@@ -87,7 +93,7 @@ const handelMenu = (menu: any) => {
 .logo {
     display: flex;
     height: 28px;
-    padding: 12px 10px 8px 10px;
+    padding: 12px 10px 8px 15px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;

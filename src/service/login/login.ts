@@ -1,5 +1,6 @@
 import tsRequest from '../index'
-import type { ILoginParam, IDataType, ILoginResult } from './types'
+import type { ILoginParam, ILoginResult } from './types'
+import type { IDataType } from '../types'
 
 enum LoginURL {
     AccountLogin = '/login',

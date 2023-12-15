@@ -10,7 +10,7 @@
             </span>
             <template #dropdown>
                 <el-dropdown-menu>
-                    <el-dropdown-item>
+                    <el-dropdown-item @click="userOutBtn">
                         <el-icon><CircleClose /></el-icon>
                         退出登录
                     </el-dropdown-item>
@@ -30,9 +30,16 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from '@/store'
+import LocalCatch from '@/utils/catch'
 const store = useStore()
+const router = useRouter()
 const name = computed(() => store.state.login.userInfo.name)
+const userOutBtn = () => {
+    LocalCatch.deleteCatch('token')
+    router.replace('/login')
+}
 </script>
 
 <style scoped lang="less">

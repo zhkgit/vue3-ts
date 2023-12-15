@@ -6,6 +6,7 @@ import { loginRequest, getUserById, getUserMenus } from '@/service/login/login'
 import type { ILoginParam } from '@/service/login/types'
 import localCatch from '@/utils/catch'
 import { mapMenusToRoutes } from '@/utils/map-menu'
+import { mapMenuToPermissions } from '@/utils/map-menu'
 
 const login: Module<ILoginState, IRootStore> = {
     namespaced: true,
@@ -13,7 +14,8 @@ const login: Module<ILoginState, IRootStore> = {
         return {
             token: '',
             userInfo: {},
-            userMenus: {}
+            userMenus: {},
+            permissionList: []
         }
     },
     getters: {},
@@ -28,6 +30,7 @@ const login: Module<ILoginState, IRootStore> = {
             state.userMenus = userMenus
             const routes = mapMenusToRoutes(userMenus)
             routes.forEach((item) => router.addRoute('main', item))
+            state.permissionList = mapMenuToPermissions(userMenus)
         }
     },
     actions: {

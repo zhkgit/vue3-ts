@@ -58,6 +58,7 @@ const handleFoldChange = (fold: boolean) => {
 .page-content {
     height: calc(100% - 48px);
     background: #dcdcdc;
+    padding: 20px;
     .page-info {
         background: #fff;
     }
