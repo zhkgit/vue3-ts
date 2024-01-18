@@ -123,6 +123,7 @@ const handelAddInfo = () => {
     emits('addModal')
 }
 const handelEditInfo = (value: any) => {
+    console.log(value)
     emits('editModal', value)
 }
 defineExpose({ requeryList })

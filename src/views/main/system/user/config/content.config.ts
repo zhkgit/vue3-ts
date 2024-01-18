@@ -8,7 +8,8 @@ export const contentTableConfig: ITable = {
         {
             prop: 'createAt',
             label: '创建时间',
-            minWidth: '250'
+            minWidth: '250',
+            slotName: 'createAt'
         },
         {
             prop: 'updateAt',

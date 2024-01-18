@@ -34,11 +34,14 @@ const login: Module<ILoginState, IRootStore> = {
         }
     },
     actions: {
-        async actionsLoginAction({ commit }, payload: ILoginParam) {
+        async actionsLoginAction({ commit, dispatch }, payload: ILoginParam) {
             const loginData = await loginRequest(payload)
             const { id, token } = loginData.data
             localCatch.setCatch('token', token)
             commit('changeToken', token)
+
+            // 确保那都token时调用
+            dispatch('getInitialDataAction', null, { root: true })
 
             const userInfo = await getUserById(id)
             commit('saveUserInfo', userInfo.data)
@@ -50,10 +53,11 @@ const login: Module<ILoginState, IRootStore> = {
 
             router.push('/main')
         },
-        loadLocalCache({ commit }) {
+        loadLocalCache({ commit, dispatch }) {
             const token = localCatch.getCatch('token')
             if (token) {
                 commit('changeToken', token)
+                dispatch('getInitialDataAction', null, { root: true })
             }
             const userInfo = localCatch.getCatch('userInfo')
             if (userInfo) {

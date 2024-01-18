@@ -7,13 +7,12 @@
             center
             destroy-on-close
         >
-            <span>
-                <TsForm v-bind="props.modalConfig" v-model="formData"></TsForm>
-            </span>
+            <TsForm v-bind="props.modalConfig" v-model="formData"></TsForm>
+            <slot></slot>
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="dialogVisible = false">Cancel</el-button>
-                    <el-button type="primary" @click="dialogVisible = false"> Confirm </el-button>
+                    <el-button @click="dialogVisible">取消</el-button>
+                    <el-button type="primary" @click="dialogVisibl"> 确定 </el-button>
                 </span>
             </template>
         </el-dialog>
@@ -22,6 +21,7 @@
 
 <script lang="ts" setup>
 import { ref, defineProps, PropType, defineExpose, watch } from 'vue'
+import { useStore } from '@/store'
 import TsForm from '@/base-ui/form'
 import { IForm } from '@/base-ui/form'
 
@@ -37,8 +37,17 @@ const props = defineProps({
     defaultInfo: {
         type: Object,
         default: () => ({})
+    },
+    pageName: {
+        type: String,
+        default: ''
+    },
+    otherInfo: {
+        type: Object,
+        default: () => ({})
     }
 })
+const store = useStore()
 const mapFormKey: any = {}
 const formItems = props.modalConfig?.formItems ?? []
 for (const item of formItems) {
@@ -46,6 +55,7 @@ for (const item of formItems) {
 }
 
 const formData = ref<any>(mapFormKey)
+const dialogVisible = ref(false)
 
 watch(
     () => props.defaultInfo,
@@ -57,7 +67,22 @@ watch(
     { deep: true }
 )
 
-const dialogVisible = ref(false)
+const dialogVisibl = () => {
+    if (Object.keys(props.defaultInfo).length > 0) {
+        store.dispatch('system/editPageDataAction', {
+            pageName: props.pageName,
+            editData: { ...formData.value, ...props.otherInfo },
+            id: props.defaultInfo.id
+        })
+    } else {
+        store.dispatch('system/createPageDataAction', {
+            pageName: props.pageName,
+            newData: { ...formData.value, ...props.otherInfo }
+        })
+    }
+    dialogVisible.value = false
+}
+
 defineExpose({
     dialogVisible,
     formData

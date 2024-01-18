@@ -64,7 +64,7 @@ const props = defineProps({
     },
     labelWidth: {
         type: String,
-        default: ''
+        default: '100px'
     },
     itemLayout: {
         type: Object,

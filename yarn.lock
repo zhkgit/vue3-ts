@@ -1257,6 +1257,13 @@
   resolved "http://registry.npm.baidu-int.com/@types%2fcrypto-js/-/crypto-js-4.1.3.tgz"
   integrity sha512-YP1sYYayLe7Eg5oXyLLvOLfxBfZ5Fgpz6sVWkpB18wDMywCLPWmqzRz+9gyuOoLF0fzDTTFwlyNbx7koONUwqA==
 
+"@types/echarts@^4.9.22":
+  version "4.9.22"
+  resolved "http://registry.npm.baidu-int.com/@types%2fecharts/-/echarts-4.9.22.tgz"
+  integrity sha512-7Fo6XdWpoi8jxkwP7BARUOM7riq8bMhmsCtSG8gzUcJmFhLo387tihoBYS/y5j7jl3PENT5RxeWZdN9RiwO7HQ==
+  dependencies:
+    "@types/zrender" "*"
+
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"
   resolved "http://registry.npm.baidu-int.com/@types%2feslint-scope/-/eslint-scope-3.7.4.tgz"
@@ -1426,6 +1433,11 @@
   integrity sha512-lwhs8hktwxSjf9UaZ9tG5M03PGogvFaH8gUgLNbN9HKIg0dvv6q+gkSuJ8HN4/VbyxkuLzCjlN7GquQ0gUJfIg==
   dependencies:
     "@types/node" "*"
+
+"@types/zrender@*":
+  version "4.0.6"
+  resolved "http://registry.npm.baidu-int.com/@types%2fzrender/-/zrender-4.0.6.tgz"
+  integrity sha512-1jZ9bJn2BsfmYFPBHtl5o3uV+ILejAtGrDcYSpT4qaVKEI/0YY+arw3XHU04Ebd8Nca3SQ7uNcLaqiL+tTFVMg==
 
 "@typescript-eslint/eslint-plugin@^5.4.0":
   version "5.62.0"
@@ -3166,6 +3178,14 @@ easy-stack@1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.baidu-int.com/easy-stack/-/easy-stack-1.0.1.tgz"
   integrity sha512-wK2sCs4feiiJeFXn3zvY0p41mdU5VUgbgs1rNsc/y5ngFUijdWd+iIN8eoyuZHKB8xN6BL4PdWmzqFmxNg6V2w==
+
+echarts@^5.4.3:
+  version "5.4.3"
+  resolved "http://registry.npm.baidu-int.com/echarts/-/echarts-5.4.3.tgz"
+  integrity sha512-mYKxLxhzy6zyTi/FaEbJMOZU1ULGEQHaeIeuMR5L+JnJTpz+YR03mnnpBhbR4+UYJAgiXgpyTVLffPAjOTLkZA==
+  dependencies:
+    tslib "2.3.0"
+    zrender "5.4.4"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -6476,6 +6496,11 @@ tslib@^2.3.0:
   resolved "http://registry.npm.baidu-int.com/tslib/-/tslib-2.6.2.tgz"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
 
+tslib@2.3.0:
+  version "2.3.0"
+  resolved "http://registry.npm.baidu-int.com/tslib/-/tslib-2.3.0.tgz"
+  integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
+
 tsutils@^3.21.0:
   version "3.21.0"
   resolved "http://registry.npm.baidu-int.com/tsutils/-/tsutils-3.21.0.tgz"
@@ -7047,3 +7072,10 @@ yorkie@^2.0.0:
     is-ci "^1.0.10"
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
+
+zrender@5.4.4:
+  version "5.4.4"
+  resolved "http://registry.npm.baidu-int.com/zrender/-/zrender-5.4.4.tgz"
+  integrity sha512-0VxCNJ7AGOMCWeHVyTrGzUgrK4asT4ml9PEkeGirAkKNYXYzoPJCLvmyfdoOXcjTHPs10OZVMfD1Rwg16AZyYw==
+  dependencies:
+    tslib "2.3.0"

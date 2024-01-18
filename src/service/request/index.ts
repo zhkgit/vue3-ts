@@ -45,7 +45,7 @@ export default class TSRequest {
             (res) => {
                 this.loading?.close()
                 const data = res.data
-                if (data.returnCode == '-1001') {
+                if (!data || data.returnCode == '-1001') {
                     console.log(`请求失败, 原因：${data.error}`)
                 } else {
                     return data

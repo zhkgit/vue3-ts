@@ -13,3 +13,24 @@ export function detailPageData(url: string) {
         url
     })
 }
+
+export function createPageData(url: string, newData: any) {
+    return tsRequest.post<IDataType>({
+        url,
+        data: newData
+    })
+}
+
+export function editPageData(url: string, newData: any) {
+    return tsRequest.patch<IDataType>({
+        url,
+        data: newData
+    })
+}
+
+export function getRole(url: string, newData: any) {
+    return tsRequest.post<IDataType>({
+        url,
+        data: newData
+    })
+}

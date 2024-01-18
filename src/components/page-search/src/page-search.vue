@@ -2,7 +2,7 @@
     <div class="page-search">
         <TsForm v-bind="props.searchFormConfig" v-model="formData">
             <template v-slot:header>
-                <h2>用户中心</h2>
+                <h2>{{ props.addName }}</h2>
             </template>
             <template v-slot:footer>
                 <div class="footer">
@@ -29,6 +29,10 @@ const props = defineProps({
     searchFormConfig: {
         type: Object as PropType<IForm>,
         required: true
+    },
+    addName: {
+        type: String,
+        default: '用户中心'
     }
 })
 const store = useStore()

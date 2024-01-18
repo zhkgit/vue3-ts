@@ -4,6 +4,7 @@
             :searchFormConfig="searchFormConfig"
             @resetBtnClick="handleResetClick"
             @searchBtnClick="handleQueryClick"
+            pageName="users"
         >
         </PageSearch>
         <PageContent
@@ -22,14 +23,17 @@
         </PageContent>
         <PageModal
             :defaultInfo="defaultInfo"
-            :modalConfig="modalConfig"
-            modalName="新建用户"
+            :modalConfig="modalConfigRef"
+            :modalName="modalName"
+            pageName="users"
             ref="modalRef"
         ></PageModal>
     </div>
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
+import { useStore } from '@/store'
 import PageSearch from '@/components/page-search'
 import PageContent from '@/components/page-content'
 import PageModal from '@/components/page-modal'
@@ -39,6 +43,7 @@ import { contentTableConfig } from './config/content.config'
 import { modalConfig } from './config/modal.config'
 import { usePageModal } from '@/hooks/usePageModal'
 
+const store = useStore()
 const [contentRef, handleResetClick, handleQueryClick] = usePageSearch()
 const addUser = () => {
     const isHiddenPassword = modalConfig.formItems.find((item) => item.field == 'password')
@@ -48,7 +53,23 @@ const editUser = () => {
     const isHiddenPassword = modalConfig.formItems.find((item) => item.field == 'password')
     isHiddenPassword!.isHidden = true
 }
-const [modalRef, handleAddData, handleEditData, defaultInfo] = usePageModal(addUser, editUser)
+const [modalRef, handleAddData, handleEditData, defaultInfo, modalName] = usePageModal(
+    'users',
+    addUser,
+    editUser
+)
+const modalConfigRef = computed(() => {
+    const departmentItem = modalConfig.formItems.find((item) => item.field === 'departmentId')
+    console.log(departmentItem)
+    departmentItem!.options = store.state.entireDepartment.map((item) => {
+        return { title: item.name, value: item.id }
+    })
+    const roleItem = modalConfig.formItems.find((item) => item.field === 'roleId')
+    roleItem!.options = store.state.entireRole.map((item) => {
+        return { title: item.name, value: item.id }
+    })
+    return modalConfig
+})
 </script>
 
 <style scoped lang="less"></style>
